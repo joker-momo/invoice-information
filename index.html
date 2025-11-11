@@ -3,7 +3,9 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Thông tin xuất hóa đơn - TOÀN THÀNH SOLAR ENERGY</title>
+    <title id="page-title">
+      Thông tin xuất hóa đơn - TOÀN THÀNH SOLAR ENERGY
+    </title>
     <style>
       * {
         box-sizing: border-box;
@@ -26,7 +28,7 @@
 
       .invoice-container {
         width: 100%;
-        max-width: 375px;
+        max-width: 400px;
         background-color: white;
         padding: 20px;
         border-radius: 8px;
@@ -101,9 +103,84 @@
         font-size: 12px;
         line-height: 1.4;
       }
+
+      .language-switcher {
+        position: fixed;
+        top: 15px;
+        right: 15px;
+        display: flex;
+        gap: 5px;
+        z-index: 1000;
+      }
+
+      .lang-btn {
+        padding: 10px 12px;
+        border: 2px solid #4caf50;
+        background-color: white;
+        color: #2e7d32;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 20px;
+        font-weight: normal;
+        transition: all 0.3s ease;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        line-height: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-width: 44px;
+        min-height: 44px;
+      }
+
+      .lang-btn:hover {
+        background-color: #4caf50;
+        color: white;
+        transform: scale(1.1);
+      }
+
+      .lang-btn.active {
+        background-color: #2e7d32;
+        color: white;
+        border-color: #2e7d32;
+      }
+
+      @media (max-width: 480px) {
+        .language-switcher {
+          top: 10px;
+          right: 10px;
+          gap: 3px;
+        }
+
+        .lang-btn {
+          padding: 8px 10px;
+          font-size: 18px;
+          min-width: 40px;
+          min-height: 40px;
+        }
+      }
+
+      body {
+        position: relative;
+      }
     </style>
   </head>
   <body>
+    <div class="language-switcher">
+      <button
+        class="lang-btn active"
+        onclick="switchLanguage('vi', this)"
+        title="Tiếng Việt"
+      >
+        🇻🇳
+      </button>
+      <button
+        class="lang-btn"
+        onclick="switchLanguage('en', this)"
+        title="English"
+      >
+        🇬🇧
+      </button>
+    </div>
     <div class="invoice-container">
       <div class="header">
         <div class="logo-placeholder">
@@ -117,35 +194,47 @@
           />
         </div>
         <div>
-          <div class="company-name">CÔNG TY TNHH TOÀN THÀNH SOLAR ENERGY</div>
-          <div style="font-size: 14px">Thông tin xuất hóa đơn</div>
+          <div class="company-name" data-i18n="title">
+            Thông tin xuất hóa đơn
+          </div>
+          <!-- <div style="font-size: 14px">Thông tin xuất hóa đơn</div> -->
         </div>
       </div>
 
       <div class="info-section">
-        <div class="info-title">Thông tin công ty</div>
+        <div class="info-title" data-i18n="company-info-title">
+          Thông tin công ty
+        </div>
         <div class="info-content">
           <div class="info-item">
-            <span class="info-label">Tên Công ty:</span>
-            <span class="info-value">CÔNG TY TNHH TOÀN THÀNH SOLAR ENERGY</span>
+            <span class="info-label" data-i18n="company-name-label"
+              >Tên Công ty:</span
+            >
+            <span class="info-value" data-i18n="company-name-value"
+              >CÔNG TY TNHH TOÀN THÀNH SOLAR ENERGY</span
+            >
           </div>
           <div class="info-item">
-            <span class="info-label">Địa chỉ:</span>
-            <span class="info-value"
+            <span class="info-label" data-i18n="address-label">Địa chỉ:</span>
+            <span class="info-value" data-i18n="address-value"
               >651 Trần Xuân Soạn, Phường Tân Hưng, Thành phố Hồ Chí Minh, Việt
               Nam</span
             >
           </div>
           <div class="info-item">
-            <span class="info-label">Điện thoại:</span>
+            <span class="info-label" data-i18n="phone-label">Điện thoại:</span>
             <span class="info-value">0853 899 699</span>
           </div>
           <div class="info-item">
-            <span class="info-label">Mã số thuế:</span>
+            <span class="info-label" data-i18n="tax-code-label"
+              >Mã số thuế:</span
+            >
             <span class="info-value">0318881247</span>
           </div>
           <div class="info-item">
-            <span class="info-label">Mail nhận hóa đơn:</span>
+            <span class="info-label" data-i18n="invoice-email-label"
+              >Mail nhận hóa đơn:</span
+            >
             <span class="info-value"
               ><a href="mailto:ketoan@toanthanh.vn" target="_blank"
                 >ketoan@toanthanh.vn</a
@@ -155,10 +244,121 @@
         </div>
       </div>
 
+      <div class="info-section">
+        <div class="info-title" data-i18n="bank-account-title">
+          Tài khoản ngân hàng
+        </div>
+        <div class="info-content">
+          <div class="info-item">
+            <span class="info-label" data-i18n="account-name-label"
+              >Tên tài khoản:</span
+            >
+            <span class="info-value">CONG TY TNHH TOAN THANH SOLAR ENERGY</span>
+          </div>
+          <div class="info-item">
+            <span class="info-label" data-i18n="account-number-label"
+              >Số tài khoản:</span
+            >
+            <span class="info-value">8600028639</span>
+          </div>
+          <div class="info-item">
+            <span class="info-label" data-i18n="bank-label">Ngân hàng:</span>
+            <span class="info-value" data-i18n="bank-value"
+              >Ngân hàng TMCP Đầu tư và Phát triển Việt Nam (BIDV) <br />Chi
+              nhánh Tây Sài Gòn</span
+            >
+          </div>
+        </div>
+      </div>
+
       <div class="footer">
-        <p>Trang thông tin xuất hóa đơn điện tử</p>
+        <p data-i18n="footer-text">Trang thông tin xuất hóa đơn điện tử</p>
         <p>© 2025 CÔNG TY TNHH TOÀN THÀNH SOLAR ENERGY</p>
       </div>
     </div>
+
+    <script>
+      const translations = {
+        vi: {
+          "page-title": "Thông tin xuất hóa đơn - TOÀN THÀNH SOLAR ENERGY",
+          title: "Thông tin xuất hóa đơn",
+          "company-info-title": "Thông tin công ty",
+          "company-name-label": "Tên Công ty:",
+          "company-name-value": "CÔNG TY TNHH TOÀN THÀNH SOLAR ENERGY",
+          "address-label": "Địa chỉ:",
+          "address-value":
+            "651 Trần Xuân Soạn, Phường Tân Hưng, Thành phố Hồ Chí Minh, Việt Nam",
+          "phone-label": "Điện thoại:",
+          "tax-code-label": "Mã số thuế:",
+          "invoice-email-label": "Mail nhận hóa đơn:",
+          "bank-account-title": "Tài khoản ngân hàng",
+          "account-name-label": "Tên tài khoản:",
+          "account-number-label": "Số tài khoản:",
+          "bank-label": "Ngân hàng:",
+          "bank-value":
+            "Ngân hàng TMCP Đầu tư và Phát triển Việt Nam (BIDV) <br />Chi nhánh Tây Sài Gòn",
+          "footer-text": "Trang thông tin xuất hóa đơn điện tử",
+        },
+        en: {
+          "page-title": "Invoice Information - TOÀN THÀNH SOLAR ENERGY",
+          title: "Invoice Information",
+          "company-info-title": "Company Information",
+          "company-name-label": "Company Name:",
+          "company-name-value": "TOAN THANH SOLAR ENERGY COMPANY LIMITED",
+          "address-label": "Address:",
+          "address-value":
+            "651 Tran Xuan Soan, Tan Hung Ward, Ho Chi Minh City, Vietnam",
+          "phone-label": "Phone:",
+          "tax-code-label": "Tax Code:",
+          "invoice-email-label": "Invoice Email:",
+          "bank-account-title": "Bank Account",
+          "account-name-label": "Account Name:",
+          "account-number-label": "Account Number:",
+          "bank-label": "Bank:",
+          "bank-value":
+            "Joint Stock Commercial Bank for Investment and Development of Vietnam (BIDV) <br />Tay Sai Gon Branch",
+          "footer-text": "Electronic Invoice Information Page",
+        },
+      };
+
+      let currentLanguage = "vi";
+
+      function switchLanguage(lang, buttonElement) {
+        currentLanguage = lang;
+        document.documentElement.lang = lang;
+
+        // Update page title
+        const pageTitle = document.getElementById("page-title");
+        if (
+          pageTitle &&
+          translations[lang] &&
+          translations[lang]["page-title"]
+        ) {
+          pageTitle.textContent = translations[lang]["page-title"];
+        }
+
+        // Update all elements with data-i18n attribute
+        document.querySelectorAll("[data-i18n]").forEach((element) => {
+          const key = element.getAttribute("data-i18n");
+          if (translations[lang] && translations[lang][key]) {
+            element.innerHTML = translations[lang][key];
+          }
+        });
+
+        // Update active button
+        document.querySelectorAll(".lang-btn").forEach((btn) => {
+          btn.classList.remove("active");
+        });
+        if (buttonElement) {
+          buttonElement.classList.add("active");
+        }
+      }
+
+      // Initialize with Vietnamese (default)
+      document.addEventListener("DOMContentLoaded", function () {
+        const viButton = document.querySelector('.lang-btn[onclick*="vi"]');
+        switchLanguage("vi", viButton);
+      });
+    </script>
   </body>
 </html>
